@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Toast from './components/Toast'
-// import Home from './pages/Home'
-// import ProductDetails from './pages/ProductDetails'
-// import Cart from './pages/Cart'
-// import Wishlist from './pages/Wishlist'
-// import Login from './pages/Login'
+import Home from './pages/Home'
+import ProductDetails from './pages/ProductDetails'
+import Cart from './pages/Cart'
+import Wishlist from './pages/Wishlist'
+import Login from './pages/Login'
 
 const load = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback } catch { return fallback } }
 const save = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)) } catch {} }
@@ -44,26 +44,26 @@ export default function App() {
 
   const moveToCart = (product) => { addToCart(product); removeFromWishlist(product.id) }
 
-  // return (
-  //   <BrowserRouter>
-  //     <Navbar
-  //       cartCount={cart.reduce((s, i) => s + i.quantity, 0)}
-  //       wishlistCount={wishlist.length}
-  //       user={user}
-  //       onLogout={() => setUser(null)}
-  //       darkMode={darkMode}
-  //       toggleDark={() => setDarkMode(d => !d)}
-  //       onSearch={setSearchQuery}
-  //       searchQuery={searchQuery}
-  //     />
-  //     {/* <Routes>
-  //       <Route path="/" element={<Home addToCart={addToCart} addToWishlist={addToWishlist} wishlist={wishlist} showToast={showToast} />} />
-  //       <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} addToWishlist={addToWishlist} wishlist={wishlist} showToast={showToast} />} />
-  //       <Route path="/cart" element={<Cart cart={cart} updateCart={setCart} removeFromCart={removeFromCart} showToast={showToast} />} />
-  //       <Route path="/wishlist" element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} moveToCart={moveToCart} showToast={showToast} />} />
-  //       <Route path="/login" element={<Login user={user} onLogin={u => setUser(u)} onLogout={() => setUser(null)} showToast={showToast} />} />
-  //     </Routes> */}
-  //     <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
-  //   </BrowserRouter>
-  // )
+  return (
+    <BrowserRouter>
+      <Navbar
+        cartCount={cart.reduce((s, i) => s + i.quantity, 0)}
+        wishlistCount={wishlist.length}
+        user={user}
+        onLogout={() => setUser(null)}
+        darkMode={darkMode}
+        toggleDark={() => setDarkMode(d => !d)}
+        onSearch={setSearchQuery}
+        searchQuery={searchQuery}
+      />
+      <Routes>
+        <Route path="/" element={<Home addToCart={addToCart} addToWishlist={addToWishlist} wishlist={wishlist} showToast={showToast} />} />
+        <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} addToWishlist={addToWishlist} wishlist={wishlist} showToast={showToast} />} />
+        <Route path="/cart" element={<Cart cart={cart} updateCart={setCart} removeFromCart={removeFromCart} showToast={showToast} />} />
+        <Route path="/wishlist" element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} moveToCart={moveToCart} showToast={showToast} />} />
+        <Route path="/login" element={<Login user={user} onLogin={u => setUser(u)} onLogout={() => setUser(null)} showToast={showToast} />} />
+      </Routes>
+      <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
+    </BrowserRouter>
+  )
 }
