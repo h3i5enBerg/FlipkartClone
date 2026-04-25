@@ -13,14 +13,14 @@ const SORT_OPTIONS = [
   { value: 'rating',     label: 'Rating: High to Low' },
 ]
 
-export default function Home({ addToCart, addToWishlist, wishlist, showToast }) {
+export default function Home({ addToCart, addToWishlist, wishlist, showToast, searchQuery = '' }) {
   const navigate = useNavigate()
   const [products, setProducts]             = useState([])
   const [categories, setCategories]         = useState([])
   const [loading, setLoading]               = useState(true)
   const [error, setError]                   = useState(null)
   const [activeCategory, setActiveCategory] = useState(null)
-  const [searchQuery, setSearchQuery]       = useState('')
+  // searchQuery now comes from App via navbar — removed local state
   const [filters, setFilters]               = useState(DEFAULT_FILTERS)
   const [sortBy, setSortBy]                 = useState('default')
   const [recentlyViewed, setRecentlyViewed] = useState([])
@@ -57,7 +57,7 @@ export default function Home({ addToCart, addToWishlist, wishlist, showToast }) 
       sortBy === 'rating'     ? b.rating - a.rating : 0
     )
 
-  const clearFilters = () => { setFilters(DEFAULT_FILTERS); setSearchQuery(''); setSortBy('default'); setActiveCategory(null) }
+  const clearFilters = () => { setFilters(DEFAULT_FILTERS); setSortBy('default'); setActiveCategory(null) }
 
   return (
     <div className="home-page">

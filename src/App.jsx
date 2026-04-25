@@ -57,7 +57,7 @@ export default function App() {
         searchQuery={searchQuery}
       />
       <Routes>
-        <Route path="/" element={<Home addToCart={addToCart} addToWishlist={addToWishlist} wishlist={wishlist} showToast={showToast} />} />
+        <Route path="/" element={<Home addToCart={addToCart} addToWishlist={addToWishlist} wishlist={wishlist} showToast={showToast} searchQuery={searchQuery} />} />
         <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} addToWishlist={addToWishlist} wishlist={wishlist} showToast={showToast} />} />
         <Route path="/cart" element={<Cart cart={cart} updateCart={setCart} removeFromCart={removeFromCart} showToast={showToast} />} />
         <Route path="/wishlist" element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} moveToCart={moveToCart} showToast={showToast} />} />
